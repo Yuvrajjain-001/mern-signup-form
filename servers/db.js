@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MONGODB_URI= 'mongodb://localhost:27017/mydatabase';
+// const MONGODB_URI= 'mongodb://localhost:27017/mydatabase';
 
 module.exports = () => {
 	const connectionParams = {
@@ -7,10 +7,11 @@ module.exports = () => {
 		useUnifiedTopology: true,
 	};
 	try {
-		mongoose.connect(MONGODB_URI, connectionParams).then(()=>{
+		mongoose.connect(process.env.MONGO_URI, connectionParams).then(()=>{
 			console.log("Connection sucess")
 		}).catch((e)=>{
-console.log("n")
+			console.log(`Error: ${e.message}`.red.bold);
+			process.exit();
 		})
 		console.log("Connected to database successfully");
 	} catch (error) {
