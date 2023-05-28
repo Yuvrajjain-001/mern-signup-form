@@ -20,8 +20,13 @@ const Signup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			const config = {
+				headers: {
+					'Content-type': 'application/json'
+				}
+			};
 			const url = "/api/users";
-			const { data: res } = await axios.post(url, data);
+			const { data: res } = await axios.post(url, data,config);
 			navigate("/login");
 			console.log(res.message);
 		} catch (error) {

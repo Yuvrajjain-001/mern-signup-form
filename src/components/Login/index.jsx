@@ -14,8 +14,13 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			const config = {
+				headers: {
+					'Content-type': 'application/json'
+				}
+			};
 			const url = "/api/auth";
-			const { data: res } = await axios.post(url, data);
+			const { data: res } = await axios.post(url, data,config);
 			localStorage.setItem("token", res.data);
 			window.location = "/";
 		} catch (error) {
